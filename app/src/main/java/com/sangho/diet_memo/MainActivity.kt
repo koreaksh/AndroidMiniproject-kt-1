@@ -1,6 +1,5 @@
 package com.sangho.diet_memo
 
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,22 +8,41 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.sangho.diet_memo.customDialog.CustomDialog
+import com.sangho.diet_memo.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private val TAG = "Main"
+    private val TAG = "LifeCycle"
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         runBlocking {
-            delay(1000)
+            delay(100)
         }
-        setContentView(R.layout.activity_main)
-
+        setContentView(binding.root)
         anonymous()
+
+        binding.writeBtn.setOnClickListener {
+            val customDialog = CustomDialog()
+            customDialog.show(supportFragmentManager, "customDialog")
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i(TAG,"LifeCycle-MainActivity-onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i(TAG,"LifeCycle-MainActivity-onStop")
     }
 
     private fun anonymous() {  //익명로그인시키기.
@@ -45,5 +63,5 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
         }
-    }
+    } //anonymous()
 }
