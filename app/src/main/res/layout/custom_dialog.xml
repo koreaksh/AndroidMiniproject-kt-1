@@ -41,21 +41,35 @@
         android:layout_marginTop="10dp"
         android:paddingBottom="4dp"
         android:orientation="horizontal"
+        android:weightSum="1"
         app:layout_constraintTop_toBottomOf="@id/exercise_memo"
         app:layout_constraintBottom_toBottomOf="parent">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="운동 날짜"
             android:textSize="22sp"
-            android:layout_margin="10dp"/>
-        <Spinner
-            android:id="@+id/exercise_memo_date"
+            android:layout_margin="10dp"
+            android:layout_weight="0.3"/>
+        <TextView
+            android:id="@+id/data_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="날짜를 선택해주세요."
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="50dp"
-            android:layout_weight="1"/>
+            android:layout_weight="0.67"/>
+        <ImageButton
+            android:id="@+id/date_picker_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_calendar_today_24"
+            android:contentDescription="TODO"
+            android:background="@android:color/transparent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="7dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

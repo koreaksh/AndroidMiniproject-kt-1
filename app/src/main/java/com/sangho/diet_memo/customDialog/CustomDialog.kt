@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.sangho.diet_memo.R
 import com.sangho.diet_memo.databinding.CustomDialogBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class CustomDialog() : DialogFragment() {
 
@@ -25,6 +26,11 @@ class CustomDialog() : DialogFragment() {
         Log.i(TAG,"CustomDialog-fragment-LifeCycle-onCreateView")
         binding = CustomDialogBinding.inflate(layoutInflater)
         val view = binding.root
+
+        binding.datePickerBtn.setOnClickListener {
+            val datepick = CalendarDialog(context, inflater)
+            datepick.dataPicker()
+        }
 
         return view
     }
